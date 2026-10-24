@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Filter states by a user-provided name using MySQLdb."""
+"""Display states matching a user-provided name."""
 
 import MySQLdb
 import sys
@@ -16,9 +16,10 @@ if __name__ == "__main__":
 
     cursor = db.cursor()
 
-    query = "SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(
-        sys.argv[4]
-    )
+    query = (
+        "SELECT * FROM states WHERE BINARY name = '{}' "
+        "ORDER BY id ASC"
+    ).format(sys.argv[4])
 
     cursor.execute(query)
 
